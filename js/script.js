@@ -21,6 +21,7 @@ let gameState = {
 };
 
 // Story Data
+// Story Data
 const storyData = {
     days: [
         {
@@ -30,7 +31,7 @@ const storyData = {
                     id: 'future',
                     from: '—',
                     fromdate: '02/15/2016',
-                    subject: 're: you need to read this',
+                    subject: '❗re: you need to read this',
                     body: `hey. i know this sounds crazy but you need to listen.
 
 you keep doing this thing where you put off the hard conversations. you tell yourself it'll be fine, that you'll handle it later, that if you just focus on one thing at a time everything will work out.
@@ -50,6 +51,24 @@ please. just… pay attention.`,
                     options: [
                         { text: 'Continue', wife: 0, work: 0 }
                     ]
+                },
+                {
+                    id: 'spam',
+                    from: 'Manager',
+                    fromdate: '02/09/2016',
+                    subject: 'Meeting Follow-Up',
+                    body: 'Hi team, circling back on the action items from today’s meeting. I didn’t see the notes in the shared drive - could someone point me to them?',
+                    snippet: 'Hi team, circling back...',
+                    day: 'Day 0',
+                },
+                {
+                    id: 'spam2',
+                    from: 'Maya',
+                    fromdate: '02/09/2016',
+                    subject: 'Updated Timeline',
+                    body: 'Hey, just flagging that the timeline doc was updated this morning. No major changes, but take a look when you get the chance.',
+                    snippet: 'Hey, just flagging that the...',
+                    day: 'Day 0',
                 }
             ]
         },
@@ -60,7 +79,7 @@ please. just… pay attention.`,
                     id: 'day1-main',
                     from: 'Wife',
                     fromdate: '02/10/2016',
-                    subject: 'dinner 💕',
+                    subject: '❗dinner 💕',
                     body: `hey love, i made your favorite tonight. i know you've been busy but i really want us to finally have a proper date night. don't be late 🕯️`,
                     snippet: 'hey love, i made your favorite tonight...',
                     day: 'Day 1',
@@ -70,6 +89,15 @@ please. just… pay attention.`,
                         { text: 'Leave work early, buy flowers, go home', wife: 10, work: 0 },
                         { text: 'Bring laptop home, try to balance both', wife: 5, work: 5 }
                     ]
+                },
+                {
+                    id: 'spam3',
+                    from: 'Wife',
+                    fromdate: '02/10/2016',
+                    subject: 'my charger!',
+                    body: 'random question but did you take my charger this morning? my phone’s at like 12% 🙃',
+                    snippet: 'random question but...',
+                    day: 'Day 1',
                 }
             ]
         },
@@ -80,7 +108,7 @@ please. just… pay attention.`,
                     id: 'day2-main',
                     from: 'Wife',
                     fromdate: '02/11/2016',
-                    subject: 'thinking about your presentation',
+                    subject: '❗thinking about your presentation',
                     body: `ok so i was replaying our conversation from last night and i think the reason your boss didn't love the original plan is because it felt short-term. what if you frame it as a long-term system instead... like something the company can build on instead of just fixing this quarter's problem? you could even use that slide you were worried about to show future impact.`,
                     snippet: 'ok so i was replaying our conversation from last night...',
                     day: 'Day 2',
@@ -90,6 +118,26 @@ please. just… pay attention.`,
                         { text: 'Ignore wife and go with your own idea', wife: 0, work: 0 },
                         { text: 'Tell wife it\'s great but stay silent at work', wife: 5, work: 0 }
                     ]
+                },
+                {
+                    id: 'spam4',
+                    from: 'Jake',
+                    fromdate: '02/11/2016',
+                    subject: 'quick question',
+                    body: 'do you know if the boss is in a good mood today or no? trying to decide when to ask lol',
+                    snippet: 'do you know if...',
+                    day: 'Day 2'
+                },
+                {
+                    id: 'spam5',
+                    from: 'Wife',
+                    fromdate: '02/11/2016',
+                    subject: 'home late again?',
+                    body: `hey, are you gonna be late tonight or should i eat without you
+                    
+                    just wanna know`,
+                    snippet: 'hey, are you...',
+                    day: 'Day 2'
                 }
             ]
         },
@@ -105,7 +153,7 @@ please. just… pay attention.`,
 can you call me when you see this
 it's kinda important
 please`,
-                    snippet: 'hey, can you call me when you see this...',
+                    snippet: '❗hey, can you call me when you see this...',
                     day: 'Day 3',
                     isDecision: true,
                     options: [
@@ -113,6 +161,29 @@ please`,
                         { text: 'Step out and answer', wife: 20, work: 0 },
                         { text: 'Text "can\'t talk rn" promise later', wife: 5, work: 7 }
                     ]
+                },
+
+                {
+                    id: 'spam6',
+                    from: 'Priya N.',
+                    fromdate: '02/12/2016',
+                    subject: 'following up',
+                    body: `Hey, just circling back on this from yesterday.
+                    
+                    No rush, but let me know when you have a second.`,
+                    snippet: 'Hey, just circling back...',
+                    day: 'Day 3'
+                },
+                {
+                    id: 'spam7',
+                    from: 'Alex Morgan',
+                    fromdate: '02/12/2016',
+                    subject: 'Heads Up',
+                    body: `FYI - leadership will be sitting in on the meeting
+                    
+                    Might want to be prepared to speak.`,
+                    snippet: 'FYI - leadership...',
+                    day: 'Day 3'
                 }
             ]
         },
@@ -127,18 +198,17 @@ please`,
                     body: `uhhh is that your wife's post on instagram? 😬 rough timing… boss is literally right here btw`,
                     snippet: 'uhhh is that your wife\'s post on instagram?',
                     day: 'Day 4',
-                    isDecision: false
                 },
                 {
-                    id: 'day4-main',
+                    id: '❗day4-main',
                     from: 'Instagram',
                     fromdate: '02/13/2016',
                     subject: 'Wife shared a post',
-                    body: `@Wife posted:
+                    body: `@lifewsparkles posted:
 
-"when you're always the last priority 🙃"
+"missing feeling chosen lately 😔"
 
-[3 comments] [12 likes]`,
+[3 comments] [68 likes]`,
                     snippet: 'when you\'re always the last priority...',
                     day: 'Day 4',
                     isDecision: true,
@@ -147,6 +217,19 @@ please`,
                         { text: 'Ask her to delete post and confront her', wife: 0, work: 5 },
                         { text: 'Ignore to avoid drama at work', wife: 0, work: 10 }
                     ]
+                },
+                {
+                    id: 'spam8',
+                    from: 'IT Support',
+                    fromdate: '02/13/2016',
+                    subject: 'Doc Access',
+                    body: `You've been granted access to:
+
+                    Q1 Strategy - Final Draft
+                    
+                    If this was unexpected, no action is required.`,
+                    snippet: 'You\'ve been granted...',
+                    day: 'Day 4'
                 }
             ]
         },
@@ -157,7 +240,7 @@ please`,
                     id: 'day5-main',
                     from: 'Wife',
                     fromdate: '02/14/2016',
-                    subject: 'wow.',
+                    subject: '❗wow.',
                     body: `i can't believe you forgot valentine's day.
 again.
 i didn't say anything this morning because honestly i was waiting to see if you'd remember on your own.
