@@ -24,6 +24,7 @@ const storyData = {
                 {
                     id: 'future',
                     from: '—',
+                    fromdate: '02/15/2016',
                     subject: 're: you need to read this',
                     body: `hey. i know this sounds crazy but you need to listen.
 
@@ -52,7 +53,8 @@ please. just… pay attention.`,
             emails: [
                 {
                     id: 'day1-main',
-                    from: 'Bhumi',
+                    from: 'Wife',
+                    fromdate: '02/10/2016',
                     subject: 'dinner 💕',
                     body: `hey love, i made your favorite tonight. i know you've been busy but i really want us to finally have a proper date night. don't be late 🕯️`,
                     snippet: 'hey love, i made your favorite tonight...',
@@ -71,7 +73,8 @@ please. just… pay attention.`,
             emails: [
                 {
                     id: 'day2-main',
-                    from: 'Bhumi',
+                    from: 'Wife',
+                    fromdate: '02/11/2016',
                     subject: 'thinking about your presentation',
                     body: `ok so i was replaying our conversation from last night and i think the reason your boss didn't love the original plan is because it felt short-term. what if you frame it as a long-term system instead... like something the company can build on instead of just fixing this quarter's problem? you could even use that slide you were worried about to show future impact.`,
                     snippet: 'ok so i was replaying our conversation from last night...',
@@ -90,7 +93,8 @@ please. just… pay attention.`,
             emails: [
                 {
                     id: 'day3-main',
-                    from: 'Bhumi',
+                    from: 'Wife',
+                    fromdate: '02/12/2016',
                     subject: 'please call me',
                     body: `hey
 can you call me when you see this
@@ -113,6 +117,7 @@ please`,
                 {
                     id: 'day4-flavor',
                     from: 'Mike (Slack)',
+                    fromdate: '02/13/2016',
                     subject: 'lol is this about you?',
                     body: `uhhh is that your wife's post on instagram? 😬 rough timing… boss is literally right here btw`,
                     snippet: 'uhhh is that your wife\'s post on instagram?',
@@ -122,8 +127,9 @@ please`,
                 {
                     id: 'day4-main',
                     from: 'Instagram',
-                    subject: 'Bhumi shared a post',
-                    body: `@bhumi_patel posted:
+                    fromdate: '02/13/2016',
+                    subject: 'Wife shared a post',
+                    body: `@Wife posted:
 
 "when you're always the last priority 🙃"
 
@@ -144,7 +150,8 @@ please`,
             emails: [
                 {
                     id: 'day5-main',
-                    from: 'Bhumi',
+                    from: 'Wife',
+                    fromdate: '02/14/2016',
                     subject: 'wow.',
                     body: `i can't believe you forgot valentine's day.
 again.
@@ -199,6 +206,7 @@ function renderInbox() {
         
         emailItem.innerHTML = `
             <div class="email-from">${email.from}</div>
+            <div class="email-from">${email.fromdate}</div>
             <div class="email-subject">${email.subject}</div>
             <div class="email-snippet">${email.snippet}</div>
             <div class="email-day">${email.day}${isDecided ? ' • resolved' : ''}</div>
@@ -357,8 +365,27 @@ function advanceDay() {
     
     if (gameState.currentDay === 0) {
         document.getElementById('dayIndicator').textContent = 'DAY 0';
+        document.getElementById('date').textContent = '02/09/2016';
     } else {
-        document.getElementById('dayIndicator').textContent = `DAY ${gameState.currentDay} OF 5`;
+        document.getElementById('dayIndicator').textContent = `DAY ${gameState.currentDay}`;
+        if(gameState.currentDay === 1){
+            document.getElementById('date').textContent = '02/10/2016';
+        }
+        if(gameState.currentDay === 2){
+            document.getElementById('date').textContent = '02/11/2016';
+        }
+        if(gameState.currentDay === 3){
+            document.getElementById('date').textContent = '02/12/2016';
+        }
+        if(gameState.currentDay === 4){
+            document.getElementById('date').textContent = '02/13/2016';
+        }
+        if(gameState.currentDay === 5){
+            document.getElementById('date').textContent = '02/14/2016';
+        }
+        if(gameState.currentDay === 6){
+            document.getElementById('date').textContent = '02/15/2016';
+        }
     }
     
     renderInbox();
