@@ -260,7 +260,6 @@ anyway. do whatever you want today. i'm done getting my hopes up.`,
     ]
 };
 
-// function DayZeroButtonTransition() {
 
 // Helper Functions
 function getAllEmails() {
