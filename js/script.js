@@ -563,11 +563,111 @@ No new messages.`;
             <div class="score-item">Work Score: ${gameState.workScore}/50 ${keptJob ? '✓' : '✗'}</div>
             <div class="score-item">Relationship Score: ${gameState.wifeScore}/50 ${keptRelationship ? '✓' : '✗'}</div>
         </div>
-        <button class="restart-btn" onclick="restartGame()">Play Again</button>
+        <button class="next-day-btn" onclick="showDay6Transition()">Continue</button>
     `;
     
     document.getElementById('emailContent').style.display = 'none';
     endingScreen.classList.add('active');
+}
+
+function showDay6Transition() {
+    const transition = document.getElementById('dayTransition');
+    const dayNumber = document.getElementById('transitionDayNumber');
+    
+    dayNumber.textContent = 'DAY 6';
+    transition.classList.add('active');
+    
+    // Add click handler to continue to email typing animation
+    const clickHandler = () => {
+        transition.classList.remove('active');
+        transition.removeEventListener('click', clickHandler);
+        showDay6Email();
+    };
+    
+    transition.addEventListener('click', clickHandler);
+}
+
+function showDay6Email() {
+    // Hide ending screen, show email content
+    document.getElementById('endingScreen').classList.remove('active');
+    document.getElementById('emailContent').style.display = 'block';
+    
+    const emailContent = document.getElementById('emailContent');
+    emailContent.innerHTML = `
+        <div class="email-compose-view">
+            <div class="compose-header">Compose New Message</div>
+            <div class="compose-field">
+                <span class="field-label">To:</span>
+                <span class="field-value typing-text" id="typingTo"></span>
+            </div>
+            <div class="compose-field">
+                <span class="field-label">Subject:</span>
+                <span class="field-value typing-text" id="typingSubject"></span>
+            </div>
+            <div class="compose-body">
+                <div class="typing-text" id="typingBody"></div>
+            </div>
+        </div>
+    `;
+    
+    // Typing animation
+    const toText = 'me@past.com';
+    const subjectText = 're: you need to read this';
+    const bodyText = `hey. i know this sounds crazy but you need to listen.
+
+you keep doing this thing where you put off the hard conversations. you tell yourself it'll be fine, that you'll handle it later, that if you just focus on one thing at a time everything will work out.
+
+it won't.
+
+i'm watching you ignore calls. i'm watching you choose the safe option that lets you avoid dealing with anything real. and i'm watching it all fall apart.
+
+you can't keep delaying the things that matter. not this time.
+
+please. just… pay attention.`;
+    
+    let toIndex = 0;
+    let subjectIndex = 0;
+    let bodyIndex = 0;
+    
+    // Type "To:" field
+    const toInterval = setInterval(() => {
+        if (toIndex < toText.length) {
+            document.getElementById('typingTo').textContent += toText[toIndex];
+            toIndex++;
+        } else {
+            clearInterval(toInterval);
+            // Start typing subject after small delay
+            setTimeout(() => {
+                const subjectInterval = setInterval(() => {
+                    if (subjectIndex < subjectText.length) {
+                        document.getElementById('typingSubject').textContent += subjectText[subjectIndex];
+                        subjectIndex++;
+                    } else {
+                        clearInterval(subjectInterval);
+                        // Start typing body after small delay
+                        setTimeout(() => {
+                            const bodyInterval = setInterval(() => {
+                                if (bodyIndex < bodyText.length) {
+                                    document.getElementById('typingBody').textContent += bodyText[bodyIndex];
+                                    bodyIndex++;
+                                } else {
+                                    clearInterval(bodyInterval);
+                                    // Show "Play Again" button after typing is done
+                                    setTimeout(() => {
+                                        emailContent.innerHTML += `
+                                            <div class="next-day-container">
+                                                <button class="restart-btn" onclick="restartGame()">Play Again</button>
+                                            </div>
+                                        `;
+                                    }, 1000);
+                                }
+                            }, 30); // Typing speed for body
+                        }, 500);
+                    }
+                }, 50); // Typing speed for subject
+            }, 500);
+        }
+    }, 80); // Typing speed for To field
 }
 
 function restartGame() {

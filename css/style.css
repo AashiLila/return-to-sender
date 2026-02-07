@@ -502,3 +502,56 @@ body {
     border-radius: 6px;
     border: 1px solid #ddd;
 }
+
+/* Email Compose View (Day 6) */
+.email-compose-view {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.compose-header {
+    font-size: 20px;
+    color: #c74444;
+    margin-bottom: 30px;
+    font-weight: bold;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #3a3a3a;
+}
+
+.compose-field {
+    margin-bottom: 20px;
+    font-size: 15px;
+    display: flex;
+    align-items: baseline;
+}
+
+.field-label {
+    color: #808080;
+    margin-right: 10px;
+    min-width: 80px;
+    font-weight: bold;
+}
+
+.field-value {
+    color: #e0e0e0;
+}
+
+.compose-body {
+    margin-top: 30px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #d0d0d0;
+    white-space: pre-wrap;
+    min-height: 300px;
+}
+
+.typing-text::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+    color: #c74444;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
