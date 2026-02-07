@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Return to Sender – Inbox</title>
+  <link rel="stylesheet" href="css/inbox.css" />
+</head>
+
+<body>
+  <div class="app-container">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="logo">
+        <div class="logo-icon">✉</div>
+        <div class="logo-text">return to sender</div>
+      </div>
+      <!-- JS will update this -->
+      <div class="day-indicator" id="dayIndicator">DAY 0</div>
+      <div class="date">02/09/2016</div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+
+      <!-- INBOX -->
+      <div class="inbox-list">
+        <div class="inbox-header">INBOX</div>
+        <div id="emailList"></div>
+      </div>
+
+      <!-- EMAIL VIEW -->
+      <div class="email-viewer">
+        <div id="emailContent" class="email-content">
+          <div class="no-email-selected">
+            Select an email to read
+          </div>
+          <button class="continue-button">hiii</button>
+        </div>
+
+        <!-- ENDING SCREEN (hidden by default) -->
+        <div id="endingScreen" class="ending-screen"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CHOICE POPUP -->
+  <div id="choicePopup" class="popup hidden">
+    <div class="popup-content">
+      <p id="popup-question">What do you do?</p>
+      <div id="popup-options"></div>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script src="js/inbox.js"></script>
+</body>
+</html>
+
+
