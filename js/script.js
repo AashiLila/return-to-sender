@@ -29,7 +29,7 @@ const storyData = {
             emails: [
                 {
                     id: 'future',
-                    from: '—',
+                    from: 'zhfonpoaxefafe@jmail.com',
                     fromdate: '02/15/2016',
                     subject: '❗re: you need to read this',
                     body: `hey. i know this sounds crazy but you need to listen.
@@ -81,6 +81,7 @@ please. just… pay attention.`,
                     fromdate: '02/10/2016',
                     subject: '❗dinner 💕',
                     body: `hey love, i made your favorite tonight. i know you've been busy but i really want us to finally have a proper date night. don't be late 🕯️`,
+                    images: ['../assets/dinner.jpeg'],
                     snippet: 'hey love, i made your favorite tonight...',
                     day: 'Day 1',
                     isDecision: true,
@@ -196,6 +197,7 @@ please`,
                     fromdate: '02/13/2016',
                     subject: 'lol is this about you?',
                     body: `uhhh is that your wife's post on instagram? 😬 rough timing… boss is literally right here btw`,
+                    images: ['../assets/insta.png'],
                     snippet: 'uhhh is that your wife\'s post on instagram?',
                     day: 'Day 4',
                 },
@@ -326,17 +328,32 @@ function renderEmailView(email) {
     const emailContent = document.getElementById('emailContent');
     
     const hasDecided = gameState.decisions[email.id] !== undefined;
+
+    let imagesHtml = '';
+
+    if (email.images && email.images.length > 0) {
+        imagesHtml = `
+            <div class="email-images">
+                ${email.images.map(src =>
+                    `<img src="${src}" class="email-image" />`
+                ).join('')}
+            </div>
+        `;
+    }
     
     let content = `
-        <div class="email-header-view">
-            <div class="email-subject-view">${email.subject}</div>
-            <div class="email-meta">
-                <div class="email-from-view">From: ${email.from}</div>
-                <div>To: You</div>
-            </div>
+    <div class="email-header-view">
+        <div class="email-subject-view">${email.subject}</div>
+        <div class="email-meta">
+            <div class="email-from-view">From: ${email.from}</div>
+            <div>To: You</div>
         </div>
-        <div class="email-body-view">${email.body}</div>
-    `;
+    </div>
+    <div class="email-body-view">
+        ${email.body}
+        ${imagesHtml}
+    </div>
+`;
     
     // Show "Make a Decision" button for undecided decision emails
     if (email.isDecision && !hasDecided && email.id === getCurrentDayDecisionEmail()?.id) {
