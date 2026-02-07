@@ -1,57 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Return to Sender - Inbox</title>
-    <link rel="stylesheet" href="css\style.css">
+  <meta charset="UTF-8" />
+  <title>Home Screen</title>
+  <link rel="stylesheet" href="css\home.css" />
 </head>
 <body>
-    <div class="app-container">
-        <!-- Header -->
-        <div class="header">
-            <div class="logo">
-                <div class="logo-icon">✉</div>
-                <div class="logo-text">JMail</div>
-            </div>
-            <div class="day-indicator" id="dayIndicator">DAY 0</div>
-            <div class="date-indicator" id="date">02/09/2016</div>
-        </div>
+  <div id="overlay-content">
 
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Inbox List -->
-            <div class="inbox-list">
-                <div class="inbox-header">INBOX</div>
-                <div id="emailList"></div>
-            </div>
-
-            <!-- Email Viewer -->
-            <div class="email-viewer">
-                <div id="emailContent" class="email-content">
-                    <div class="no-email-selected">Select an email to read</div>
-                </div>
-                <div id="endingScreen" class="ending-screen"></div>
-            </div>
-        </div>
+    <div class="container">
+      <button class="play-button" onclick="window.location.href='home.html'">
+        <img src="assets\button.png">
+      </button>
     </div>
 
-    <!-- Decision Modal -->
-    <div id="decisionModal" class="modal-overlay">
-        <div class="decision-modal">
-            <div class="modal-header">What will you do?</div>
-            <div id="decisionButtons" class="decision-buttons"></div>
-        </div>
-    </div>
-
-    <!-- Day Transition -->
-    <div id="dayTransition" class="day-transition">
-        <div class="day-transition-content">
-            <div class="day-number-large" id="transitionDayNumber">DAY 0</div>
-            <div class="day-subtitle">click anywhere to continue</div>
-        </div>
-    </div>
-
-    <script src="js\script.js"></script>
+  
+  </div>
 </body>
 </html>

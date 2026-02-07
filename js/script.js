@@ -326,66 +326,96 @@ function selectEmail(emailId) {
 
 function renderEmailView(email) {
     const emailContent = document.getElementById('emailContent');
-    
+
     const hasDecided = gameState.decisions[email.id] !== undefined;
 
-    let imagesHtml = '';
+    // keep track of day
+    const isCurrentDayEmail =
+        storyData.days[gameState.currentDay].emails.some(e => e.id === email.id);
 
+    // images for day 1 & 4
+    let imagesHtml = '';
     if (email.images && email.images.length > 0) {
         imagesHtml = `
             <div class="email-images">
                 ${email.images.map(src =>
-                    `<img src="${src}" class="email-image" />`
+                    `<img src="${src}" class="email-image" alt="email attachment" />`
                 ).join('')}
             </div>
         `;
     }
-    
+
     let content = `
-    <div class="email-header-view">
-        <div class="email-subject-view">${email.subject}</div>
-        <div class="email-meta">
-            <div class="email-from-view">From: ${email.from}</div>
-            <div>To: You</div>
+        <div class="email-header-view">
+            <div class="email-subject-view">${email.subject}</div>
+            <div class="email-meta">
+                <div class="email-from-view">From: ${email.from}</div>
+                <div>To: You</div>
+            </div>
         </div>
-    </div>
-    <div class="email-body-view">
-        ${email.body}
-        ${imagesHtml}
-    </div>
-`;
-    
-    // Show "Make a Decision" button for undecided decision emails
-    if (email.isDecision && !hasDecided && email.id === getCurrentDayDecisionEmail()?.id) {
+        <div class="email-body-view">
+            ${email.body}
+            ${imagesHtml}
+        </div>
+    `;
+
+    // Decision email =  choice popup
+    if (
+        email.isDecision &&
+        !hasDecided &&
+        isCurrentDayEmail &&
+        email.id === getCurrentDayDecisionEmail()?.id
+    ) {
         const buttonText = email.isFutureEmail ? 'Continue' : 'Make a Decision';
         content += `
             <div class="next-day-container">
-                <button class="make-decision-btn" onclick="openDecisionModal('${email.id}')">${buttonText}</button>
+                <button class="make-decision-btn"
+                    onclick="openDecisionModal('${email.id}')">
+                    ${buttonText}
+                </button>
             </div>
         `;
     }
-    // Add next day button if this is the current day's decision and it's been made
-    else if (email.isDecision && hasDecided && email.id === getCurrentDayDecisionEmail()?.id) {
+
+    // Decision email - already made
+    else if (
+        email.isDecision &&
+        hasDecided &&
+        isCurrentDayEmail &&
+        email.id === getCurrentDayDecisionEmail()?.id
+    ) {
         const chosenOption = email.options[gameState.decisions[email.id]];
         content += `
             <div class="next-day-container">
-                <div class="decision-made-note">Decision made: ${chosenOption.text}</div>
-                ${gameState.currentDay < 5 ? 
-                    `<button class="next-day-btn" onclick="triggerDayTransition()">Continue to Day ${gameState.currentDay + 1} →</button>` :
-                    `<button class="next-day-btn" onclick="showEnding()">See Your Ending →</button>`
+                <div class="decision-made-note">
+                    Decision made: ${chosenOption.text}
+                </div>
+                ${
+                    gameState.currentDay < 5
+                        ? `<button class="next-day-btn"
+                            onclick="triggerDayTransition()">
+                            Continue to Day ${gameState.currentDay + 1} →
+                          </button>`
+                        : `<button class="next-day-btn"
+                            onclick="showEnding()">
+                            See Your Ending →
+                          </button>`
                 }
             </div>
         `;
     }
-    else if (email.isDecision == false) {
+
+    // Non-decision email = continue button
+    else if (email.isDecision === false && isCurrentDayEmail) {
         content += `
             <div class="next-day-container">
-                <button class="next-day-btn" onclick="triggerDayTransition()">Continue</button>
+                <button class="next-day-btn" onclick="triggerDayTransition()">
+                    Continue
+                </button>
             </div>
         `;
-
     }
-    
+
     emailContent.innerHTML = content;
 }
 
@@ -519,6 +549,8 @@ function showEnding() {
 
 But at what cost? You're exhausted. She's exhausted. You both know you've been running on fumes.
 
+You both adopt Felicia the Ferret to reduce stress.
+
 Maybe that's just what life is now. Maybe that's enough.
 
 Or maybe you're just delaying the inevitable.`;
@@ -526,7 +558,7 @@ Or maybe you're just delaying the inevitable.`;
         endingTitle = 'CAREER FOCUSED';
         endingText = `The promotion came through. Corner office, better title, the works.
 
-She left three weeks ago. Packed her things while you were at a conference.
+She left three weeks ago. Packed her things while you were at a conference. She decided Felicia the Ferret is a better companion.
 
 You tell yourself it was mutual. That you both wanted different things. That this is what success looks like.
 
@@ -536,6 +568,8 @@ The apartment is quieter now.`;
         endingText = `You got let go. "Restructuring," they called it. You know what it really was.
 
 But she was there when you got home. She held you while you cried. She said you'd figure it out together.
+
+Felicia the Ferret offered you her job, but you're not sure you want it.
 
 You don't know what's next. But at least you're not alone.
 
@@ -547,6 +581,8 @@ Maybe that's what matters.`;
 The job vanished in a round of cuts. She left a week later. Said she couldn't watch you spiral anymore.
 
 You keep checking your phone, waiting for someone to need you. Anyone.
+
+She adopted Felicia the Ferret to lift her spirits.
 
 No new messages.
 
@@ -563,7 +599,7 @@ No new messages.`;
             <div class="score-item">Work Score: ${gameState.workScore}/50 ${keptJob ? '✓' : '✗'}</div>
             <div class="score-item">Relationship Score: ${gameState.wifeScore}/50 ${keptRelationship ? '✓' : '✗'}</div>
         </div>
-        <button class="next-day-btn" onclick="showDay6Transition()">Continue</button>
+        <button class="next-day-btn" onclick="showDay6Transition()">Reveal the Truth</button>
     `;
     
     document.getElementById('emailContent').style.display = 'none';
@@ -611,7 +647,7 @@ function showDay6Email() {
     `;
     
     // Typing animation
-    const toText = 'me@past.com';
+    const toText = 'YOU';
     const subjectText = 're: you need to read this';
     const bodyText = `hey. i know this sounds crazy but you need to listen.
 
