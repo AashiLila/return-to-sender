@@ -1,3 +1,9 @@
+//Sound Clips 
+const EmailOpenSound = new Audio('sounds/email-open.mp3');
+const MailClickAudio = new Audio('sounds/mail-click.mp3');
+const DecisionSound = new Audio('sounds/decision.mp3');
+
+
 // Game State
 let gameState = {
     currentDay: 0,
