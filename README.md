@@ -4,7 +4,7 @@ A narrative-driven email simulation game about the impossible balance between ca
 
 ## Overview
 
-**Return To Sender** is an interactive story told through an email inbox interface. You play as someone caught between mounting workplace pressure and a deteriorating relationship. Every decision you make—or avoid—has consequences that unfold over five critical days.
+**Return To Sender** is an interactive story told through an email inbox interface. You play as someone caught between mounting workplace pressure and a deteriorating relationship. Every decision you make or avoid has consequences that unfold over five critical days.
 
 The game explores themes of communication, priorities, and the cost of success through a familiar medium we all know too well: our inbox.
 
@@ -27,7 +27,7 @@ You receive a mysterious warning email from yourself in the future. Over the nex
 3. Open `index.html` in a modern web browser
 4. Click through the Day 0 transition to begin
 
-No server or build process required—this is a pure HTML/CSS/JavaScript game.
+No server or build process required, this is a pure HTML/CSS/JavaScript game.
 
 ## How to Play
 
@@ -40,12 +40,12 @@ No server or build process required—this is a pure HTML/CSS/JavaScript game.
 
 ### Tips
 
-- Read all emails carefully—context matters
+- Read all emails carefully, context matters
 - Your wife's emails often contain important emotional cues
 - Work emails reveal workplace dynamics and expectations
 - Some days have multiple emails to read
 - You can't change decisions once made
-- There's no "perfect" ending—only your ending
+- There's no "perfect" ending, only your ending
 
 ## Design Philosophy
 
