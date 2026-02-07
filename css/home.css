@@ -21,7 +21,7 @@ body {
 
 .play-button {
   position: absolute;
-  top: 300px;
+  top: 260px;
   right: 620px;
   width: 168px;
   height: 58.5px;
@@ -49,16 +49,14 @@ body {
 
 .play-button:hover {
     transform: scale(1.1); 
+    transition: transform .35s ease-in-out;
 }
 
-.about-button {
-  position: absolute;
-  top: 100px;
-  right: 620px;
-  width: 168px;
-  height: 58.5px;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
+
+.container{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 100%;
+  padding: 5px;
 }
