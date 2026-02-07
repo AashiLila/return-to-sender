@@ -1,7 +1,12 @@
 //Sound Clips 
-const EmailOpenSound = new Audio('sounds/email-open.mp3');
-const MailClickAudio = new Audio('sounds/mail-click.mp3');
-const DecisionSound = new Audio('sounds/decision.mp3');
+const EmailOpenSound = new Audio('sounds/EmailOpenSound.mp3');
+const MouseClickAudio = new Audio('sounds/MouseClick.mp3');
+const NotificationSound = new Audio('sounds/Notification.mp3');
+
+EmailOpenSound.preload = 'auto';
+MouseClickAudio.preload = 'auto';
+NotificationSound.preload = 'auto';
+
 
 
 // Game State
@@ -202,7 +207,9 @@ function renderInbox() {
         
         const emailItem = document.createElement('div');
         emailItem.className = `email-item ${isUnread ? 'unread' : ''} ${isSelected ? 'selected' : ''} ${email.mystery ? 'mystery' : ''} ${isNewEmail ? 'new-email' : ''}`;
-        emailItem.onclick = () => selectEmail(email.id);
+        emailItem.onclick = () => {
+            selectEmail(email.id);
+        };
         
         emailItem.innerHTML = `
             <div class="email-from">${email.from}</div>
@@ -223,8 +230,10 @@ function renderInbox() {
 }
 
 function selectEmail(emailId) {
+    EmailOpenSound.play();
     gameState.selectedEmailId = emailId;
     gameState.readEmails[emailId] = true;
+
     
     const email = getAllEmails().find(e => e.id === emailId);
     renderEmailView(email);
@@ -293,22 +302,21 @@ function showDecisionModal(email) {
     buttonsContainer.innerHTML = '';
     
     email.options.forEach((option, index) => {
-        if( email.id === 'future') {
+        const btn = document.createElement('button');
+        if(email.id === 'future') {
             btn.className = 'continue-btn';
-
-        }
-        else {
-            const btn = document.createElement('button');
+        } else {
             btn.className = 'decision-btn';
-            btn.textContent = option.text;
-            btn.onclick = () => makeDecision(email.id, index);
-            buttonsContainer.appendChild(btn);
         }
+        btn.textContent = option.text;
+        btn.onclick = () => {
+            makeDecision(email.id, index);
+        };
+        buttonsContainer.appendChild(btn);
     });
-
-  
     
     modal.classList.add('active');
+
 }
 
 function hideDecisionModal() {
@@ -348,6 +356,7 @@ function showDayTransition(newDay) {
     
     // Add click handler to continue
     const clickHandler = () => {
+        NotificationSound.play()
         transition.classList.remove('active');
         transition.removeEventListener('click', clickHandler);
         
