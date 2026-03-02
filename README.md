@@ -58,8 +58,9 @@ This game was designed to:
 
 ## Credits
 
-Game design and development: Andrew Mcclendon, Aashika Lilaramani, Bhumi Pandhare, Abdul Azeem Asharaf Ali, Shravani Bhase
-Narrative concept: Original
+**Game design and development:** Andrew Mcclendon, Aashika Lilaramani, Bhumi Pandhare, Abdul Azeem Asharaf Ali, Shravani Bhase
+
+**Narrative concept:** Original
 
 **Remember:** There are no wrong choices. Only yours.
 
